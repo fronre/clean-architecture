@@ -9,17 +9,20 @@ class User:
 
 class UserRepositoryInterface(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def save(self, user: User):
-        pass
+    def save(self, user: User) -> None:
+      pass
 
+
+class SavingUseCase:
+
+    def executed(self, user:User) -> None:
+        pass
 
 
 def test_saving_user_is_calling_repository():
 
-
-
    user: User = User(first_name='Islam', last_name='hala')
-   spy_user_repository: User_repositoryInterface = Mock(spec=UserRepositoryInterface)
+   spy_user_repository  = Mock(spec=UserRepositoryInterface)
 
    saving_use_case: SavingUseCase() = SavingUseCase(user_repository=spy_user_repository)
    saving_use_case.executed(user)
