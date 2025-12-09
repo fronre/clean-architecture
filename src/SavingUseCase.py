@@ -8,5 +8,6 @@ class SavingUseCase:
 
 
     def execute(self, user: User) -> None:
-        self.user_repository.save(user)
+
+        self.user_repository.save('Islam', 'hala' )
 
