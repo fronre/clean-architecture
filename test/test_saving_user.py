@@ -4,6 +4,7 @@ from unittest.mock import Mock
 def test_saving_user_is_calling_repository():
 
 
+
    user: User = User(first_name='Islam', last_name='hala')
    spy_user_repository: User_repositoryInterface = Mock(spec=UserRepositoryInterface)
 
