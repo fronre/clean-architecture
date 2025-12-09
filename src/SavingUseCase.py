@@ -8,5 +8,5 @@ class SavingUseCase:
 
 
     def execute(self, user: User) -> None:
-        self.user_repository.save()
+        self.user_repository.save(user)
 
