@@ -30,4 +30,4 @@ def test_saving_user_save_the_user_in_the_repository():
 
 
     # Assert
-    spy_user_repository.save.assert_called_once(user)
+    spy_user_repository.save.assert_called_once_with(user)
