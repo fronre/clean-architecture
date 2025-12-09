@@ -4,10 +4,14 @@ from unittest.mock import Mock
 
 @dataclasses.dataclass
 class User:
-    pass
+     first_name: str
+     last_name: str
 
 class UserRepositoryInterface(metaclass=abc.ABCMeta):
-    pass
+    @abc.abstractmethod
+    def save(self, user: User):
+        pass
+
 
 
 def test_saving_user_is_calling_repository():
