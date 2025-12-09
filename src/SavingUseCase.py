@@ -1,4 +1,5 @@
-from test.test_saving_user import UserRepositoryInterface, User
+from src.user import User
+from src.user_repository_interface import UserRepositoryInterface
 
 
 class SavingUseCase:
