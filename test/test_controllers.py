@@ -1,3 +1,6 @@
+from types import SimpleNamespace
+from unittest.mock import Mock
+from src.delivery.controllers import create_user_controller
 
 def test_controller_calls_usecase_and_returns_presented():
     dto = {"first_name":"A","last_name":"B"}
