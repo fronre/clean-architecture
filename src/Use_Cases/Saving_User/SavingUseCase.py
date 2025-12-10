@@ -1,5 +1,7 @@
 from src.entities.user import User
 from src.Use_Cases.Saving_User.user_repository_interface import UserRepositoryInterface
+from typing import Optional, Protocol
+
 
 
 class SavingUseCase:
