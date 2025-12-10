@@ -1,6 +1,6 @@
 import abc
 
-from src.user import User
+from src.entities.user import User
 
 
 class UserRepositoryInterface(metaclass=abc.ABCMeta):

@@ -1,9 +1,9 @@
 from unittest.mock import Mock
 import pytest
 
-from src.SavingUseCase import SavingUseCase
-from src.user import User
-from src.user_repository_interface import UserRepositoryInterface
+from src.Use_Cases.Saving_User.SavingUseCase import SavingUseCase
+from src.entities.user import User
+from src.Use_Cases.Saving_User.user_repository_interface import UserRepositoryInterface
 
 @pytest.mark.parametrize(
     "user",
