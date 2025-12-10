@@ -9,10 +9,17 @@ from src.user_repository_interface import UserRepositoryInterface
     "user",
     [
         User("Islam", "hala"),
-        User("Julian", "Julian"),
-        User("Julian", "Julian"),
-        User("Julian", "Julian"),
-        User("Julian", "Julian"),
+        User("Julian234", "Julian"),
+        User("Julian44444", "Julian"),
+        User("Julian444", "Julian6"),
+        User("Julian333", "Julian7"),
+        User("Julian33", "Julian9999"),
+        User("Julian2", "Julian"),
+        User("Julian3", "Julian"),
+        User("Julian4", "Julian"),
+        User("Julian5", "Julian"),
+
+
 
     ]
 )
