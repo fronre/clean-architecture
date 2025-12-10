@@ -3,7 +3,7 @@ from src.Use_Cases.Saving_User.user_repository_interface import UserRepositoryIn
 
 
 class SavingUseCase:
-    def __init__(self, user_repository: UserRepositoryInterface):
+    def __init__(self, user_repository: UserRepositoryInterface,user_repository_interface_dublicate:UserRepositoryInterface) :
         self.user_repository: UserRepositoryInterface = user_repository
 
 
