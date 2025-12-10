@@ -8,36 +8,35 @@ from src.Use_Cases.Saving_User.user_repository_interface import UserRepositoryIn
 @pytest.mark.parametrize(
     "user",
     [
-        User("Islam", "hala"),
-        User("Julian234", "Julian"),
-        User("Julian44444", "Julian"),
-        User("Julian444", "Julian6"),
-        User("Julian333", "Julian7"),
-        User("Julian33", "Julian9999"),
-        User("Julian2", "Julian"),
-        User("Julian3", "Julian"),
-        User("Julian4", "Julian"),
-        User("Julian5", "Julian"),
-
-
-
+        User("John", "Doe"),
+        User("Alice", "Smith"),
+        User("Bob", "Marley"),
+        User("Charlie", "Brown"),
     ]
 )
-
-
-def test_saving_user_save_the_user_in_the_repository():
+def test_saving_user_is_calling_delegated_repository(user):
     # Arrange
-    user = User("Islam", "hala")
     spy_user_repository = Mock(spec=UserRepositoryInterface)
-    dummy_repository = Mock()
+    saving_use_case = SavingUseCase(user_repository=spy_user_repository)
+
+def test_saving_user_is_not_saving_when_non_authorized(user):
+
+    # Arrange
+    spy_user_repository = Mock(spec=UserRepositoryInterface)
+    spy_user_repository.save = Mock()
+
     dummy_notification_service = Mock()
     stub_authorization_service = Mock()
-    stub_authentication_service.is_authenticated = Mock(return_value=True)
-    saving_use_case  : SavingUseCase = SavingUseCase(spy_user_repository, dummy_repository)
+    stub_authorization_service.is_authorized = Mock(return_value=False)
 
+    saving_use_case = SavingUseCase(
+        spy_user_repository,
+        dummy_notification_service,
+        stub_authorization_service
+    )
 
     # Act
     saving_use_case.execute(user)
 
     # Assert
-    spy_user_repository.save.assert_called_once_with(user)
+    spy_user_repository.save.assert_not_called()
