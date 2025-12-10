@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends
 from pydantic import BaseModel
 from src.infrastructure.user_repository.in_memory_user_repository import InMemoryUserRepository
 from src.use_cases.saving_user.saving_use_case import SavingUseCase
-from src.presentation.user_presenter import UserPresenter
+from src.interface_adapters.presentation import UserPresenter
 
 app = FastAPI(title="User API (TDD-demo)")
 

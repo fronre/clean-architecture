@@ -1,5 +1,7 @@
 from unittest.mock import Mock
 
+from unittest.mock import Mock
+from src.interface_adapters.controllers.create_user_controller import create_user_controller
 
 def test_controller_with_mock_presenter():
     dto = {"first_name": "A", "last_name": "B"}
