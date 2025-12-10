@@ -29,11 +29,7 @@ def test_saving_user_is_not_saving_when_non_authorized(user):
     stub_authorization_service = Mock()
     stub_authorization_service.is_authorized = Mock(return_value=False)
 
-    saving_use_case = SavingUseCase(
-        spy_user_repository,
-        dummy_notification_service,
-        stub_authorization_service
-    )
+    saving_use_case = SavingUseCase(spy_user_repository, dummy_notification_service, stub_authorization_service)
 
     # Act
     saving_use_case.execute(user)
