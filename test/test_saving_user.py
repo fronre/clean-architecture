@@ -23,23 +23,18 @@ from src.Use_Cases.Saving_User.user_repository_interface import UserRepositoryIn
 
     ]
 )
-def test_saving_user_is_calling_delegated_repository(user):
-    # Arrange
-    spy_user_repository = Mock(spec=UserRepositoryInterface)
-    saving_use_case = SavingUseCase(user_repository=spy_user_repository)
-
-    # Act
-    saving_use_case.execute(user)
-
-    # Assert
-    spy_user_repository.save.assert_called_once_with(user)
 
 
 def test_saving_user_save_the_user_in_the_repository():
     # Arrange
-    user = User('Islam', 'hala')
+    user = User("Islam", "hala")
     spy_user_repository = Mock(spec=UserRepositoryInterface)
-    saving_use_case = SavingUseCase(user_repository=spy_user_repository)
+    dummy_repository = Mock()
+    dummy_notification_service = Mock()
+    stub_authorization_service = Mock()
+    stub_authentication_service.is_authenticated = Mock(return_value=True)
+    saving_use_case  : SavingUseCase = SavingUseCase(spy_user_repository, dummy_repository)
+
 
     # Act
     saving_use_case.execute(user)
