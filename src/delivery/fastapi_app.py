@@ -1,8 +1,14 @@
+# src/delivery/fastapi_app.py
 from fastapi import FastAPI, Depends
-from pydantic import BaseModel
-from src.infrastructure.user_repository.in_memory_user_repository import InMemoryUserRepository
+import pydantic
+
+# NOTE: adjust case of use_cases package if your folder is "Use_Cases"
 from src.use_cases.saving_user.saving_use_case import SavingUseCase
-from src.interface_adapters.presentation import UserPresenter
+from src.infrastructure.user_repository.in_memory_user_repository import InMemoryUserRepository
+
+# import the interface-adapter controller + presenter
+from src.interface_adapters.controllers.create_user_controller import create_user_controller
+from src.interface_adapters.presenters.user_presenter import UserPresenter
 
 app = FastAPI(title="User API (TDD-demo)")
 
@@ -12,12 +18,10 @@ class CreateUserDTO(BaseModel):
 
 def get_usecase():
     repo = InMemoryUserRepository()
-    presenter = UserPresenter()  # not used here but could be injected
     return SavingUseCase(user_repository=repo)
 
 @app.post("/users")
 def create_user(dto: CreateUserDTO, use_case: SavingUseCase = Depends(get_usecase)):
-    from src.entities.user import User
-    user = User(dto.first_name, dto.last_name)
-    use_case.execute(user)
-    return {"status": "created"}
+    presenter = UserPresenter()
+    # delegate to controller (adapter) which maps DTO -> domain, calls usecase and presents
+    return create_user_controller(dto.dict(), use_case, presenter)
