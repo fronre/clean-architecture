@@ -3,14 +3,13 @@ from src.Use_Cases.Saving_User.user_repository_interface import UserRepositoryIn
 
 
 class SavingUseCase:
-    def __init__(self, user_repository: UserRepositoryInterface,notifcation_service,authorization_service):
-        self.user_repository: UserRepositoryInterface = user_repository
-
+    def __init__(self, user_repository: UserRepositoryInterface, authorization_service=None):
+        self.user_repository = user_repository
+        self.authorization_service = authorization_service
 
     def execute(self, user: User) -> None:
-
-        self.user_repository.save( user)
-
-
+        if self.authorization_service and not self.authorization_service.is_authorized(user):
+            return
+        self.user_repository.save(user)
 
 
